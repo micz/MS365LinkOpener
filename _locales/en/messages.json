@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Open a shared link of a OneDrive file directly with the right app, instead of the browser.",
+    "description": "Description of the extension."
+  },
+
+  "openLink": {
+    "message": "Open as a $APP$",
+    "description": "",
+	"placeholders": {
+      "app" : {
+        "content" : "link"
+      }
+    }
+  },
+  
+  "openWord": {
+    "message": "Open in $APP$",
+    "description": "",
+	"placeholders": {
+      "app" : {
+        "content" : "Word"
+      }
+    }
+  },
+  
+  "openExcel": {
+    "message": "Open in $APP$",
+    "description": "",
+	"placeholders": {
+      "app" : {
+        "content" : "Excel"
+      }
+    }
+  },
+
+  "forceMsedgeOptionText": {
+    "message": "Force to open links in Microsoft Edge.",
+    "description": ""
+  }
+}

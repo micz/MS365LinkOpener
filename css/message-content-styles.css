@@ -1,0 +1,32 @@
+div.miczMS365Opener_btn {
+    background-color: #6685ff00;
+    color: white;
+    font-weight: 400;
+    margin-bottom: 0;
+	width: 100%;
+    float: right;
+    font-family: "Segoe UI";
+    font-size: 12px;
+    text-align: right;
+}
+
+div.miczMS365Opener_wrapper{
+    border: 1px solid rgb(46, 46, 46);
+    background-color: rgb(224, 224, 224);
+    padding: 0.25em 0.4em 0.25em 0.7em;
+    border-radius: 5px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+div.miczMS365Opener_btn a {
+	float: right;
+    margin: 0 3px 0 3px;
+}
+
+div.miczMS365Opener_btn span {
+    color: black;
+    float: right;
+    margin-right: 20px;
+    white-space: nowrap;
+}

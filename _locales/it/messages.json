@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Apri un condiviso di un file di OneDrive direttamente con l'applicazione corretta, invece che il browser.",
+    "description": "Descrizione dell'estensione."
+  },
+
+  "openLink": {
+    "message": "Apri come un $APP$",
+    "description": "",
+	"placeholders": {
+      "app" : {
+        "content" : "link"
+      }
+    }
+  },
+  
+  "openWord": {
+    "message": "Apri in $APP$",
+    "description": "",
+	"placeholders": {
+      "app" : {
+        "content" : "Word"
+      }
+    }
+  },
+  
+  "openExcel": {
+    "message": "Apri in $APP$",
+    "description": "",
+	"placeholders": {
+      "app" : {
+        "content" : "Excel"
+      }
+    }
+  },
+
+  "forceMsedgeOptionText": {
+    "message": "Forza l'apertura dei link in Microsoft Edge.",
+    "description": ""
+  }
+}
