@@ -37,5 +37,35 @@
   "forceMsedgeOptionText": {
     "message": "Forza l'apertura dei link in Microsoft Edge.",
     "description": ""
+  },
+
+  "prefsInfoTitle": {
+    "message": "Informationi Importanti",
+    "description": ""
+  },
+
+  "prefsInfoDesc_1": {
+    "message": "Non è sempre possibile capire il tupo di file dalla mail ricevuta da SharePoint o OneDrive.",
+    "description": ""
+  },
+
+  "prefsInfoDesc_2": {
+    "message": "Se questa estensione non riesce a riconoscere il tipo del file, mostrerà tre pulsanti: uno per usare Word, uno per usare Excel e uno per aprire il link nel browser.",
+    "description": ""
+  },
+
+  "prefsInfoDesc_3": {
+    "message": "L'opzione di forzare l'apertura in Microsoft Edge è per lo scenario in cui non stai usando Edge come browser predefinito, ma è il browser con il tuo account aziendale.",
+    "description": ""
+  },
+
+  "prefsDonation_1": {
+    "message": "Ti piace questo componente aggiuntivo?",
+    "description": ""
+  },
+
+  "prefsDonation_2": {
+    "message": "Considera ti fare una donazione!",
+    "description": ""
   }
 }

@@ -37,5 +37,35 @@
   "forceMsedgeOptionText": {
     "message": "Force to open links in Microsoft Edge.",
     "description": ""
+  },
+
+  "prefsInfoTitle": {
+    "message": "Important Information",
+    "description": ""
+  },
+
+  "prefsInfoDesc_1": {
+    "message": "It's not always possibile to get the right file type from the email received by Sharepoint or OneDrive.",
+    "description": ""
+  },
+
+  "prefsInfoDesc_2": {
+    "message": "If this extension can't understand the file type, it will show three buttons: one to use Word, one to use Excel and one to open the file in the browser.",
+    "description": ""
+  },
+
+  "prefsInfoDesc_3": {
+    "message": "The option to force to use Microsoft Edge is for a scenario where you do not use Edge as the default browser, but is the browser used with your Business account.",
+    "description": ""
+  },
+
+  "prefsDonation_1": {
+    "message": "Do you like this addon?",
+    "description": ""
+  },
+
+  "prefsDonation_2": {
+    "message": "Consider to make a donation!",
+    "description": ""
   }
 }

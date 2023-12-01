@@ -2,10 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="mzmo-options.css">
   </head>
 
   <body>
-    <label><input type="checkbox" id="force_msedge" name="force_msedge" /> __MSG_forceMsedgeOptionText__</label>
+    <div id="miczPrefs"><label><input type="checkbox" id="force_msedge" name="force_msedge" /> __MSG_forceMsedgeOptionText__</label></div>
+    <div id="miczDescription">
+      <h1>__MSG_prefsInfoTitle__</h1>
+      <p>__MSG_prefsInfoDesc_1__<br/>
+        __MSG_prefsInfoDesc_2__<br/>
+        __MSG_prefsInfoDesc_3__</p>
+    </div>
+    <div id="miczDonation">__MSG_prefsDonation_1__<br/><a href="http://micz.it/thunderdbird-addon-thunderstats-your-thunderbird-statistics/donate/">__MSG_prefsDonation_2__</a></div>
     <script src="mzmo-options.js"></script>
     <script src="../js/mzmo-i18n.js"></script>
   </body>
