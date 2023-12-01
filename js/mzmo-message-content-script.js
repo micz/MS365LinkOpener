@@ -1,6 +1,6 @@
 async function add365LinkButton() {
 	const links = extractLinks(document.body.innerHTML);
-	//console.log(links);
+	console.log(links);
 	
 	// Create the banner element itself.
     const banner = document.createElement("div");
@@ -11,7 +11,7 @@ async function add365LinkButton() {
 	for(let i=0;i<links.length;i++){
 		
 		if (links_done.indexOf(links[i].href) !== -1) {
-		  continue;
+		  	continue;
 		}
 		links_done.push(links[i].href);
 		
@@ -54,8 +54,45 @@ function extractLinks(html) {
 		}
 	  });
 
-	  return links;
+	  return filterLinks(links);
 }
+
+function filterLinks(links) {
+	const uniqueHrefs = {};
+
+	links = sortLinksByText(links);
+  
+	// Filter the array
+	const filteredLinks = links.filter(link => {
+	  // Se l'href è già presente e il testo è vuoto, ignorare l'elemento
+	  if (uniqueHrefs[link.href] && link.text === '') {
+		return false;
+	  }
+  
+	  // Segnare l'href come già visto
+	  uniqueHrefs[link.href] = true;
+  
+	  // Includere l'elemento nell'array filtrato
+	  return true;
+	});
+  
+	return filteredLinks;
+  }
+
+function sortLinksByText(links) {
+	// Ordina l'array mettendo dopo gli oggetti con text vuoto
+	links.sort((a, b) => {
+	  if (a.text === '' && b.text !== '') {
+		return 1; // metti 'a' prima di 'b'
+	  } else if (a.text !== '' && b.text === '') {
+		return -1; // metti 'b' prima di 'a'
+	  } else {
+		return 0; // lascia invariato l'ordine
+	  }
+	});
+	return links;
+  }
+  
 
 function getFileType(test){	//ritorna '' se non si è capito quale sia - w se word - x se excel
   let regex_xls = /\.(xlsx|xls|ods)/i;
