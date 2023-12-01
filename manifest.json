@@ -21,13 +21,13 @@
 		"storage"
     ],
     "background": {
-        "page": "background.html"
+        "page": "mzmo-background.html"
     },
 	
 	"default_locale": "en",
 	
 	"options_ui": {
-		"page": "options/options.html"
+		"page": "options/mzmo-options.html"
 	}
 
 }
