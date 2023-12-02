@@ -39,6 +39,11 @@
     "description": ""
   },
 
+  "AlwaysLinkOptionText": {
+    "message": "Mostra sempre il pulsante per aprire il link nel browser.",
+    "description": ""
+  },
+
   "prefsInfoTitle": {
     "message": "Informationi Importanti",
     "description": ""
@@ -65,7 +70,7 @@
   },
 
   "prefsDonation_2": {
-    "message": "Considera ti fare una donazione!",
+    "message": "Considera di fare una donazione!",
     "description": ""
   }
 }

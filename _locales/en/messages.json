@@ -39,6 +39,11 @@
     "description": ""
   },
 
+  "AlwaysLinkOptionText": {
+    "message": "Always show the button to open the link in a browser.",
+    "description": ""
+  },
+
   "prefsInfoTitle": {
     "message": "Important Information",
     "description": ""

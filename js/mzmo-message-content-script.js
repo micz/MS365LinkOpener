@@ -1,6 +1,6 @@
 async function add365LinkButton() {
 	const links = extractLinks(document.body.innerHTML);
-	console.log(links);
+	//console.log(links);
 	
 	// Create the banner element itself.
     const banner = document.createElement("div");
@@ -18,14 +18,14 @@ async function add365LinkButton() {
 		var app_protocol = getFileType(links[i]);
 		var app_selector = null;
 		//console.log('>>>>>>>>>>>>>> [add365LinkButton] PRE force_msedge');
-		let prefs = await browser.storage.sync.get("force_msedge");
+		let prefs = await browser.storage.sync.get({force_msedge: false, always_link: false});
 		//console.log('>>>>>>>>>>>>>> [add365LinkButton] force_msedge: '+prefs.force_msedge );
 		if(app_protocol!==''){		// App found
-			app_selector = getAppBtn(links[i].href, prefs.force_msedge, {wrd: app_protocol==='w', xls: app_protocol==='x', lnk: false} );
+			app_selector = getAppBtn(links[i].href, prefs, {wrd: app_protocol==='w', xls: app_protocol==='x', lnk: false} );
 			banner.appendChild(app_selector);
 			
 		}else{	//App not found
-			app_selector = getAppBtn(links[i].href, prefs.force_msedge);
+			app_selector = getAppBtn(links[i].href, prefs);
 			banner.appendChild(app_selector);
 		}
 		let linkText = document.createElement("span");
@@ -104,16 +104,24 @@ function getFileType(test){	//ritorna '' se non si è capito quale sia - w se wo
   if (is_word) return 'w';
 }
 
-function getAppBtn(link, force_msedge = false, par = {wrd: true, xls: true, lnk: true}) {
+function getAppBtn(link, prefs = false, par = {wrd: true, xls: true, lnk: true}) {
   // Create the selector
   var app_selector = document.createElement("div");
   app_selector.className = "miczMS365Opener_wrapper";
+
+  if(!prefs){
+	prefs = {force_msedge: false, always_link: false};
+  }
+
+  if(prefs.always_link){
+	par.lnk = true;
+  }
 
   //console.log('>>>>>>>>>>>>>> [getAppBtn] force_msedge: '+force_msedge);
 
   // Array of options with their values and texts
   var options = {
-    'lnk': { value: (force_msedge?"microsoft-edge:":"") + link, text: browser.i18n.getMessage("openLink"), image: browser.runtime.getURL('../images/link-32px.png') },
+    'lnk': { value: (prefs.force_msedge?"microsoft-edge:":"") + link, text: browser.i18n.getMessage("openLink"), image: browser.runtime.getURL('../images/link-32px.png') },
     'xls': { value: "ms-excel:ofe|u|" + link, text: browser.i18n.getMessage("openExcel"), image: browser.runtime.getURL('../images/excel-32px.png') },
     'wrd': { value: "ms-word:ofe|u|" + link, text: browser.i18n.getMessage("openWord"), image: browser.runtime.getURL('../images/word-32px.png') },
 	};
