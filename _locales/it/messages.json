@@ -34,6 +34,16 @@
     }
   },
 
+  "openPowerPoint": {
+    "message": "Apri in $APP$",
+    "description": "",
+	"placeholders": {
+      "app" : {
+        "content" : "PowerPoint"
+      }
+    }
+  },
+
   "forceMsedgeOptionText": {
     "message": "Forza l'apertura dei link in Microsoft Edge.",
     "description": ""

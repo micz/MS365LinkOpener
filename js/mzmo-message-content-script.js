@@ -1,6 +1,7 @@
 async function add365LinkButton() {
 	const links = extractLinks(document.body.innerHTML);
 	//console.log(links);
+	//console.log(document.body.innerHTML);
 	
 	// Create the banner element itself.
     const banner = document.createElement("div");
@@ -21,7 +22,7 @@ async function add365LinkButton() {
 		let prefs = await browser.storage.sync.get({force_msedge: false, always_link: false});
 		//console.log('>>>>>>>>>>>>>> [add365LinkButton] force_msedge: '+prefs.force_msedge );
 		if(app_protocol!==''){		// App found
-			app_selector = getAppBtn(links[i].href, prefs, {wrd: app_protocol==='w', xls: app_protocol==='x', lnk: false} );
+			app_selector = getAppBtn(links[i].href, prefs, {ppt: app_protocol==='p', wrd: app_protocol==='w', xls: app_protocol==='x', lnk: false} );
 			banner.appendChild(app_selector);
 			
 		}else{	//App not found
@@ -47,9 +48,13 @@ function extractLinks(html) {
 
 	  anchorElements.forEach((element) => {
 		const href = element.getAttribute('href');
-		const text = element.textContent.trim();
+		let text = element.textContent.trim();
+
+		if (text.includes(href)) {
+			text = "";
+		}
 		
-		if (href && !href.includes('/_layouts/') && !href.includes('/SitePages/') && (href.includes('/sites/') || href.includes('/personal/') || href.match(/:[A-Za-z]:/)) && href.match(/^https?:\/\/[a-zA-Z0-9.-]+\.sharepoint\.com/i)) {
+		if (href && (!href.includes('/_layouts/') || href.includes('file=')) && !href.includes('/SitePages/') && (href.includes('/sites/') || href.includes('/personal/') || href.match(/:[A-Za-z]:/)) && href.match(/^https?:\/\/[a-zA-Z0-9.-]+\.sharepoint\.com/i)) {
 		  links.push({ href, text });
 		}
 	  });
@@ -94,17 +99,22 @@ function sortLinksByText(links) {
   }
   
 
-function getFileType(test){	//ritorna '' se non si è capito quale sia - w se word - x se excel
+function getFileType(test){	//ritorna '' se non si è capito quale sia - w se word - x se excel - p se powerpoint
   let regex_xls = /\.(xlsx|xls|ods)/i;
   let is_excel = regex_xls.test(test.href) || regex_xls.test(test.text);
   let regex_doc = /\.(docx|doc|odt)/i;
   let is_word = regex_doc.test(test.href) || regex_doc.test(test.text);
-  if (is_excel===is_word) return '';
+  let regex_ppt = /\.(pptx|ppt|odp)/i;
+  let is_powerpoint = regex_ppt.test(test.href) || regex_ppt.test(test.text);//console.log('is_powerpoint: '+is_powerpoint);
+  //if (is_excel===is_word || is_excel===is_powerpoint || is_word===is_powerpoint) return '';
+  let checkApp = (is_word ? 1 : 0) + (is_excel ? 1 : 0) + (is_powerpoint ? 1 : 0);
+  if((checkApp == 0) || (checkApp > 1)) return '';
   if (is_excel) return 'x';
   if (is_word) return 'w';
+  if (is_powerpoint) return 'p';
 }
 
-function getAppBtn(link, prefs = false, par = {wrd: true, xls: true, lnk: true}) {
+function getAppBtn(link, prefs = false, par = {ppt: true, wrd: true, xls: true, lnk: true}) {
   // Create the selector
   var app_selector = document.createElement("div");
   app_selector.className = "miczMS365Opener_wrapper";
@@ -122,7 +132,8 @@ function getAppBtn(link, prefs = false, par = {wrd: true, xls: true, lnk: true})
   // Array of options with their values and texts
   var options = {
     'lnk': { value: (prefs.force_msedge?"microsoft-edge:":"") + link, text: browser.i18n.getMessage("openLink"), image: browser.runtime.getURL('../images/link-32px.png') },
-    'xls': { value: "ms-excel:ofe|u|" + link, text: browser.i18n.getMessage("openExcel"), image: browser.runtime.getURL('../images/excel-32px.png') },
+	'ppt': { value: "ms-powerpoint:ofe|u|" + link, text: browser.i18n.getMessage("openPowerPoint"), image: browser.runtime.getURL('../images/powerpoint-32px.png') },
+	'xls': { value: "ms-excel:ofe|u|" + link, text: browser.i18n.getMessage("openExcel"), image: browser.runtime.getURL('../images/excel-32px.png') },
     'wrd': { value: "ms-word:ofe|u|" + link, text: browser.i18n.getMessage("openWord"), image: browser.runtime.getURL('../images/word-32px.png') },
 	};
 
