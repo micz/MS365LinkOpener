@@ -55,7 +55,7 @@
   },
 
   "prefsInfoTitle": {
-    "message": "Informationi Importanti",
+    "message": "Informazioni Importanti",
     "description": ""
   },
 
@@ -81,6 +81,11 @@
 
   "prefsDonation_2": {
     "message": "Considera di fare una donazione!",
+    "description": ""
+  },
+
+  "backToOptionsText": {
+    "message": "Opzioni",
     "description": ""
   }
 }

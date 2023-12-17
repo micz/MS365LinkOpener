@@ -18,3 +18,10 @@ div#miczDonation{
     font-size: 13px;
     padding: 10px;
 }
+
+div#miczRelNotes{
+    position:absolute;
+    right: 0px;
+    top: 0px;
+    padding: 2px 5px 0px 0px;
+}

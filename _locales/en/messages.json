@@ -82,5 +82,10 @@
   "prefsDonation_2": {
     "message": "Consider to make a donation!",
     "description": ""
+  },
+
+  "backToOptionsText": {
+    "message": "Options",
+    "description": ""
   }
 }
