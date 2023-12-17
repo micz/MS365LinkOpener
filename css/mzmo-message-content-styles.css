@@ -17,6 +17,7 @@ div.miczMS365Opener_wrapper{
     border-radius: 5px;
     display: inline-block;
     white-space: nowrap;
+    margin-right: 5px;
 }
 
 div.miczMS365Opener_btn a {
