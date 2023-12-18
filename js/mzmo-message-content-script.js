@@ -36,7 +36,6 @@ async function add365LinkButton() {
 
     // Insert it as the very first element in the message.
     document.body.insertBefore(banner, document.body.firstChild);
-	//alert("qui");
 	//console.log(document.body.innerHTML);
 };
 
@@ -129,6 +128,10 @@ function getAppBtn(link, prefs = false, par = {ppt: true, wrd: true, xls: true, 
 
   //console.log('>>>>>>>>>>>>>> [getAppBtn] force_msedge: '+force_msedge);
 
+  // Remove che query string "d" parameter, or the app will open an empty document
+  // This parameter is used in the links in a comment notification email
+  link = removeQueryParam(link,'d');
+
   // Array of options with their values and texts
   var options = {
     'lnk': { value: (prefs.force_msedge?"microsoft-edge:":"") + link, text: browser.i18n.getMessage("openLink"), image: browser.runtime.getURL('../images/link-32px.png') },
@@ -160,6 +163,12 @@ function getAppBtn(link, prefs = false, par = {ppt: true, wrd: true, xls: true, 
   });
   
   return app_selector; 
+}
+
+function removeQueryParam(url, paramToRemove) {
+    const urlObject = new URL(url);
+    urlObject.searchParams.delete(paramToRemove);
+    return urlObject.toString();
 }
 
 add365LinkButton();
