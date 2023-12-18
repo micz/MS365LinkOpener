@@ -68,15 +68,15 @@ function filterLinks(links) {
   
 	// Filter the array
 	const filteredLinks = links.filter(link => {
-	  // Se l'href è già presente e il testo è vuoto, ignorare l'elemento
+	  // If 'href' is already present and the text is empty, ignore the element
 	  if (uniqueHrefs[link.href] && link.text === '') {
 		return false;
 	  }
   
-	  // Segnare l'href come già visto
+	  // Mark 'href' as already seen
 	  uniqueHrefs[link.href] = true;
   
-	  // Includere l'elemento nell'array filtrato
+	  // Include the element in the filtered array
 	  return true;
 	});
   
@@ -84,27 +84,28 @@ function filterLinks(links) {
   }
 
 function sortLinksByText(links) {
-	// Ordina l'array mettendo dopo gli oggetti con text vuoto
+	// sort the array by placing objects with an empty 'text' property at the end
 	links.sort((a, b) => {
 	  if (a.text === '' && b.text !== '') {
-		return 1; // metti 'a' prima di 'b'
+		return 1; // put 'a' before 'b'
 	  } else if (a.text !== '' && b.text === '') {
-		return -1; // metti 'b' prima di 'a'
+		return -1; // put 'b' brefore 'a'
 	  } else {
-		return 0; // lascia invariato l'ordine
+		return 0; // keep the current order
 	  }
 	});
 	return links;
   }
   
 
-function getFileType(test){	//ritorna '' se non si è capito quale sia - w se word - x se excel - p se powerpoint
+function getFileType(test){	// returns '' if no file type has been found - w if word - x if excel - p if powerpoint
   let regex_xls = /\.(xlsx|xls|ods)/i;
   let is_excel = regex_xls.test(test.href) || regex_xls.test(test.text);
   let regex_doc = /\.(docx|doc|odt)/i;
   let is_word = regex_doc.test(test.href) || regex_doc.test(test.text);
   let regex_ppt = /\.(pptx|ppt|odp)/i;
-  let is_powerpoint = regex_ppt.test(test.href) || regex_ppt.test(test.text);//console.log('is_powerpoint: '+is_powerpoint);
+  let is_powerpoint = regex_ppt.test(test.href) || regex_ppt.test(test.text);
+  //console.log('is_powerpoint: '+is_powerpoint);
   //if (is_excel===is_word || is_excel===is_powerpoint || is_word===is_powerpoint) return '';
   let checkApp = (is_word ? 1 : 0) + (is_excel ? 1 : 0) + (is_powerpoint ? 1 : 0);
   if((checkApp == 0) || (checkApp > 1)) return '';
