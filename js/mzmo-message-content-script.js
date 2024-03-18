@@ -129,16 +129,17 @@ function getAppBtn(link, prefs = false, par = {ppt: true, wrd: true, xls: true, 
 
   //console.log('>>>>>>>>>>>>>> [getAppBtn] force_msedge: '+force_msedge);
 
-  // Remove che query string "d" parameter, or the app will open an empty document
-  // This parameter is used in the links in a comment notification email
-  link = removeQueryParam(link,'d');
+  // Remove the query string parameters [at, d, e, ne, nav], or the app will open an empty document or an unmodified document not synchronized with the cloud
+  // This parameters are used in the links in a comment notification email
+  var paramsToRemove = ['at', 'd', 'e', 'ne', 'nav'];
+  var link_sanitized = removeQueryParams(link, paramsToRemove);
 
   // Array of options with their values and texts
   var options = {
     'lnk': { value: (prefs.force_msedge?"microsoft-edge:":"") + link, text: browser.i18n.getMessage("openLink"), image: browser.runtime.getURL('../images/link-32px.png') },
-	'ppt': { value: "ms-powerpoint:ofe|u|" + link, text: browser.i18n.getMessage("openPowerPoint"), image: browser.runtime.getURL('../images/powerpoint-32px.png') },
-	'xls': { value: "ms-excel:ofe|u|" + link, text: browser.i18n.getMessage("openExcel"), image: browser.runtime.getURL('../images/excel-32px.png') },
-    'wrd': { value: "ms-word:ofe|u|" + link, text: browser.i18n.getMessage("openWord"), image: browser.runtime.getURL('../images/word-32px.png') },
+	'ppt': { value: "ms-powerpoint:ofe|u|" + link_sanitized, text: browser.i18n.getMessage("openPowerPoint"), image: browser.runtime.getURL('../images/powerpoint-32px.png') },
+	'xls': { value: "ms-excel:ofe|u|" + link_sanitized, text: browser.i18n.getMessage("openExcel"), image: browser.runtime.getURL('../images/excel-32px.png') },
+    'wrd': { value: "ms-word:ofe|u|" + link_sanitized, text: browser.i18n.getMessage("openWord"), image: browser.runtime.getURL('../images/word-32px.png') },
 	};
 
   // Add options to the selector
@@ -166,10 +167,12 @@ function getAppBtn(link, prefs = false, par = {ppt: true, wrd: true, xls: true, 
   return app_selector; 
 }
 
-function removeQueryParam(url, paramToRemove) {
-    const urlObject = new URL(url);
-    urlObject.searchParams.delete(paramToRemove);
-    return urlObject.toString();
+function removeQueryParams(url, paramsToRemove) {
+	const urlObject = new URL(url);
+	paramsToRemove.forEach(param => {
+		urlObject.searchParams.delete(param);
+	});
+	return urlObject.toString();
 }
 
 add365LinkButton();
