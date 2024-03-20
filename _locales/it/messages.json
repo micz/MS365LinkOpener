@@ -65,7 +65,7 @@
   },
 
   "prefsInfoDesc_2": {
-    "message": "Se questa estensione non riesce a riconoscere il tipo del file, mostrerà tre pulsanti: uno per usare Word, uno per usare Excel e uno per aprire il link nel browser.",
+    "message": "Se questa estensione non riesce a riconoscere il tipo del file, mostrerà quattro pulsanti: uno per usare Word, uno per Excel, uno per PowerPoint e uno per aprire il link nel browser.",
     "description": ""
   },
 

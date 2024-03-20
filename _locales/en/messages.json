@@ -65,7 +65,7 @@
   },
 
   "prefsInfoDesc_2": {
-    "message": "If this extension can't understand the file type, it will show three buttons: one to use Word, one to use Excel and one to open the file in the browser.",
+    "message": "If this extension can't understand the file type, it will show four buttons: one to use Word, one to use Excel, one to use PowerPoint and one to open the file in the browser.",
     "description": ""
   },
 
