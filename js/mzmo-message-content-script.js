@@ -1,5 +1,5 @@
 /*
- *  Microsoft 365 Link Opener [https://micz.it/thunderdbird-addon-microsoft365linkopener/]
+ *  Microsoft 365 Link Opener [https://micz.it/thunderbird-addon-microsoft365linkopener/]
  *  Copyright (C) 2024  Mic (m@micz.it)
 
  *  This program is free software: you can redistribute it and/or modify
