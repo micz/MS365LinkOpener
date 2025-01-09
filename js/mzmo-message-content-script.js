@@ -189,6 +189,7 @@ function getAppBtn(link, prefs = false, par = {ppt: true, wrd: true, xls: true, 
 }
 
 function removeQueryParams(url, paramsToRemove) {
+	if(!url) return '';
 	const urlObject = new URL(url);
 	if (paramsToRemove === "all") {
 	  // Rimuove all params
