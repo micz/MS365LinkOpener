@@ -77,7 +77,7 @@ function extractLinks(html) {
 		
 		if (href && (!href.includes('/_layouts/') || href.includes('file=')) && !href.includes('/SitePages/') && (href.includes('/sites/') || href.includes('/personal/') || href.match(/:[A-Za-z]:/)) && href.match(/^https?:\/\/[a-zA-Z0-9.-]+\.sharepoint\.com/i)) {
 		  links.push({ href, text, href_sanitized });
-		  console.log(">>>>>>>>>> [extractLinks] { href, text, href_sanitized }: "+JSON.stringify({ href, text, href_sanitized }));
+		//   console.log(">>>>>>>>>> [extractLinks] { href, text, href_sanitized }: "+JSON.stringify({ href, text, href_sanitized }));
 		}
 	  });
 
@@ -102,7 +102,7 @@ function filterLinks(links) {
 	  // Include the element in the filtered array
 	  return true;
 	});
-  console.log(">>>>>>>>>> [filterLinks] filteredLinks: "+JSON.stringify(filteredLinks));
+//   console.log(">>>>>>>>>> [filterLinks] filteredLinks: "+JSON.stringify(filteredLinks));
 	return filteredLinks;
   }
 
