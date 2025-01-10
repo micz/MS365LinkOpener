@@ -29,6 +29,7 @@ async function add365LinkButton() {
     banner.className = "miczMS365Opener_btn";
 
 	var links_done = [];
+	let prefs = await browser.storage.sync.get({force_msedge: false, always_link: false, force_href_to_msedge: false});
 
 	for(let i=0;i<links.length;i++){
 		
@@ -40,7 +41,6 @@ async function add365LinkButton() {
 		var app_protocol = getFileType(links[i]);
 		var app_selector = null;
 		//console.log('>>>>>>>>>>>>>> [add365LinkButton] PRE force_msedge');
-		let prefs = await browser.storage.sync.get({force_msedge: false, always_link: false});
 		//console.log('>>>>>>>>>>>>>> [add365LinkButton] force_msedge: '+prefs.force_msedge );
 		if(app_protocol!==''){		// App found
 			app_selector = getAppBtn(links[i].href, prefs, {ppt: app_protocol==='p', wrd: app_protocol==='w', xls: app_protocol==='x', lnk: false} );
@@ -55,7 +55,9 @@ async function add365LinkButton() {
 		app_selector.appendChild(linkText);
 	}
 
-	forceHrefToEdge();
+	if(prefs.force_href_to_msedge){
+		forceHrefToEdge();
+	}
 
     // Insert it as the very first element in the message.
     document.body.insertBefore(banner, document.body.firstChild);
