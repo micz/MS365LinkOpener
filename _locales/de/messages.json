@@ -3,7 +3,6 @@
     "message": "Geteilte Links einer SharePoint- oder OneDrive-Datei direkt mit der richtigen App öffnen, anstelle des Webbrowsers.",
     "description": "Description of the extension."
   },
-
   "openLink": {
     "message": "Open as a $APP$",
     "description": "",
@@ -13,7 +12,6 @@
       }
     }
   },
-  
   "openWord": {
     "message": "Öffnen in $APP$",
     "description": "",
@@ -23,7 +21,6 @@
       }
     }
   },
-  
   "openExcel": {
     "message": "Öffnen in $APP$",
     "description": "",
@@ -33,7 +30,6 @@
       }
     }
   },
-
   "openPowerPoint": {
     "message": "Öffnen in $APP$",
     "description": "",
@@ -43,49 +39,44 @@
       }
     }
   },
-
   "forceMsedgeOptionText": {
     "message": "Links immer mit Microsoft Edge öffnen.",
     "description": ""
   },
-
   "AlwaysLinkOptionText": {
     "message": "Schaltfläche zum öffnen von Links im Webbrowser permanent anzeigen.",
     "description": ""
   },
-
   "prefsInfoTitle": {
     "message": "Wichtige Informationen",
     "description": ""
   },
-
   "prefsInfoDesc_1": {
     "message": "Es ist nicht immer möglich das korrekte Dateiformat aus der von Sharepoint oder OneDrive empfangenen Email zu ermitteln.",
     "description": ""
   },
-
   "prefsInfoDesc_2": {
     "message": "Falls dieses Add-on das Dateiformat nicht versteht, zeigt es vier Schaltflächen: Ein für Word, eine für Excel, eine für PowerPoint and eine um die Datei im Browser zu öffnen.",
     "description": ""
   },
-
   "prefsInfoDesc_3": {
     "message": "Die Option dafür immer Microsoft Edge zu verwenden ist für ein Szenarium wo Edge nicht als Standardbrowser konfiguriert ist, aber dieser Brwoser im Firmenkonto verwendet werden soll.",
     "description": ""
   },
-
   "prefsDonation_1": {
     "message": "Mögen Sie dieses Add-on?",
     "description": ""
   },
-
   "prefsDonation_2": {
     "message": "Erwägen Sie eine Spende!",
     "description": ""
   },
-
   "backToOptionsText": {
     "message": "Einstellungen",
+    "description": ""
+  },
+  "ForceHrefToMSEdgeOptionText": {
+    "message": "Links immer mit Microsoft Edge öffnen.",
     "description": ""
   }
 }

@@ -1,6 +1,6 @@
 /*
  *  Microsoft 365 Link Opener [https://micz.it/thunderbird-addon-microsoft365linkopener/]
- *  Copyright (C) 2024  Mic (m@micz.it)
+ *  Copyright (C) 2024 - 2025  Mic (m@micz.it)
 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// This parameters are used in the links in a comment notification email
+var paramsToRemove = ['at', 'd', 'e', 'ne', 'nav'];
 
 async function add365LinkButton() {
 	const links = extractLinks(document.body.innerHTML);
@@ -27,6 +29,7 @@ async function add365LinkButton() {
     banner.className = "miczMS365Opener_btn";
 
 	var links_done = [];
+	let prefs = await browser.storage.sync.get({force_msedge: false, always_link: false, force_href_to_msedge: false});
 
 	for(let i=0;i<links.length;i++){
 		
@@ -38,7 +41,6 @@ async function add365LinkButton() {
 		var app_protocol = getFileType(links[i]);
 		var app_selector = null;
 		//console.log('>>>>>>>>>>>>>> [add365LinkButton] PRE force_msedge');
-		let prefs = await browser.storage.sync.get({force_msedge: false, always_link: false});
 		//console.log('>>>>>>>>>>>>>> [add365LinkButton] force_msedge: '+prefs.force_msedge );
 		if(app_protocol!==''){		// App found
 			app_selector = getAppBtn(links[i].href, prefs, {ppt: app_protocol==='p', wrd: app_protocol==='w', xls: app_protocol==='x', lnk: false} );
@@ -51,6 +53,10 @@ async function add365LinkButton() {
 		let linkText = document.createElement("span");
 		linkText.innerText = links[i].text;
 		app_selector.appendChild(linkText);
+	}
+
+	if(prefs.force_href_to_msedge){
+		forceHrefToEdge();
 	}
 
     // Insert it as the very first element in the message.
@@ -67,13 +73,15 @@ function extractLinks(html) {
 	  anchorElements.forEach((element) => {
 		const href = element.getAttribute('href');
 		let text = element.textContent.trim();
+		const href_sanitized = removeQueryParams(href, "all");
 
 		if (text.includes(href)) {
 			text = "";
 		}
 		
 		if (href && (!href.includes('/_layouts/') || href.includes('file=')) && !href.includes('/SitePages/') && (href.includes('/sites/') || href.includes('/personal/') || href.match(/:[A-Za-z]:/)) && href.match(/^https?:\/\/[a-zA-Z0-9.-]+\.sharepoint\.com/i)) {
-		  links.push({ href, text });
+		  links.push({ href, text, href_sanitized });
+		//   console.log(">>>>>>>>>> [extractLinks] { href, text, href_sanitized }: "+JSON.stringify({ href, text, href_sanitized }));
 		}
 	  });
 
@@ -87,18 +95,18 @@ function filterLinks(links) {
   
 	// Filter the array
 	const filteredLinks = links.filter(link => {
-	  // If 'href' is already present and the text is empty, ignore the element
-	  if (uniqueHrefs[link.href] && link.text === '') {
+	  // If 'href_sanitized' is already present and the text is empty, ignore the element
+	  if (uniqueHrefs[link.href_sanitized] || link.text === '') {
 		return false;
 	  }
   
 	  // Mark 'href' as already seen
-	  uniqueHrefs[link.href] = true;
+	  uniqueHrefs[link.href_sanitized] = true;
   
 	  // Include the element in the filtered array
 	  return true;
 	});
-  
+//   console.log(">>>>>>>>>> [filterLinks] filteredLinks: "+JSON.stringify(filteredLinks));
 	return filteredLinks;
   }
 
@@ -149,8 +157,6 @@ function getAppBtn(link, prefs = false, par = {ppt: true, wrd: true, xls: true, 
   //console.log('>>>>>>>>>>>>>> [getAppBtn] force_msedge: '+force_msedge);
 
   // Remove the query string parameters [at, d, e, ne, nav], or the app will open an empty document or an unmodified document not synchronized with the cloud
-  // This parameters are used in the links in a comment notification email
-  var paramsToRemove = ['at', 'd', 'e', 'ne', 'nav'];
   var link_sanitized = removeQueryParams(link, paramsToRemove);
 
   // Array of options with their values and texts
@@ -187,11 +193,34 @@ function getAppBtn(link, prefs = false, par = {ppt: true, wrd: true, xls: true, 
 }
 
 function removeQueryParams(url, paramsToRemove) {
+	if(!url) return '';
 	const urlObject = new URL(url);
-	paramsToRemove.forEach(param => {
+	if (paramsToRemove === "all") {
+	  // Rimuove all params
+	  let mySearchParams = new URLSearchParams(urlObject.searchParams);
+	  	for (const [key, value] of mySearchParams) {
+			// console.log(">>>>>>>>>> [removeQueryParams]  [key, value]: "+ JSON.stringify([key, value]));
+			urlObject.searchParams.delete(key);
+		}
+	} else if (Array.isArray(paramsToRemove)) {
+	  // Remove only specific params
+	  paramsToRemove.forEach(param => {
 		urlObject.searchParams.delete(param);
-	});
+	  });
+	}
+  
 	return urlObject.toString();
+  }
+
+function forceHrefToEdge(){
+	const prefix = "microsoft-edge:";
+	const links = document.querySelectorAll("a[href]");
+	links.forEach(link => {
+		const originalHref = link.getAttribute("href");
+		if (!originalHref.startsWith(prefix)) {
+			link.setAttribute("href", prefix + originalHref);
+		}
+	});
 }
 
 add365LinkButton();
