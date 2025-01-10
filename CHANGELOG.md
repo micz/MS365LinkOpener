@@ -5,7 +5,7 @@
 
 
 
-   <h2>Version 1.2.0 - ??/??/2025</h2>
+   <h2>Version 1.2.0 - 10/01/2025</h2>
    <ul>
    <li>Italian description fixed.</li>
    <li>Improved filtering to show only one button per file, even if there are more links on the message [<a href="https://github.com/micz/MS365LinkOpener/issues/9">#9</a>].</li>
