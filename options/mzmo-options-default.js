@@ -20,4 +20,5 @@ export const prefs_default = {
     do_debug: false,
     force_msedge: false,
     always_link: false,
+    force_href_to_msedge: false,
 }

@@ -55,6 +55,8 @@ async function add365LinkButton() {
 		app_selector.appendChild(linkText);
 	}
 
+	forceHrefToEdge();
+
     // Insert it as the very first element in the message.
     document.body.insertBefore(banner, document.body.firstChild);
 	//console.log(document.body.innerHTML);
@@ -207,6 +209,18 @@ function removeQueryParams(url, paramsToRemove) {
   
 	return urlObject.toString();
   }
-  
+
+function forceHrefToEdge(){
+	const prefix = "microsoft-edge:";
+
+	const links = document.querySelectorAll("a[href]");
+
+	links.forEach(link => {
+		const originalHref = link.getAttribute("href");
+		if (!originalHref.startsWith(prefix)) {
+			link.setAttribute("href", prefix + originalHref);
+		}
+	});
+}
 
 add365LinkButton();
