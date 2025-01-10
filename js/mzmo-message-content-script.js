@@ -214,9 +214,7 @@ function removeQueryParams(url, paramsToRemove) {
 
 function forceHrefToEdge(){
 	const prefix = "microsoft-edge:";
-
 	const links = document.querySelectorAll("a[href]");
-
 	links.forEach(link => {
 		const originalHref = link.getAttribute("href");
 		if (!originalHref.startsWith(prefix)) {
