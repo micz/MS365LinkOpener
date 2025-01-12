@@ -5,6 +5,10 @@
 
 
 
+<h2>Version 1.2.1 - ??/??/2025</h2>
+    <ul>
+     <li>...</li>
+    </ul>
    <h2>Version 1.2.0 - 10/01/2025</h2>
    <ul>
    <li>Italian description fixed.</li>
