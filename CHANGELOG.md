@@ -7,7 +7,7 @@
 
 <h2>Version 1.2.1 - ??/??/2025</h2>
     <ul>
-     <li>...</li>
+     <li>The descriptions for the available options have been improved.</li>
     </ul>
    <h2>Version 1.2.0 - 10/01/2025</h2>
    <ul>
