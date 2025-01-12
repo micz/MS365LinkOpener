@@ -40,7 +40,7 @@
     }
   },
   "forceMsedgeOptionText": {
-    "message": "Links immer mit Microsoft Edge öffnen.",
+    "message": "Erzwingen Sie das Öffnen von OneDrive/SharePoint-Links für generische Dokumente in Microsoft Edge.",
     "description": ""
   },
   "AlwaysLinkOptionText": {
@@ -76,7 +76,7 @@
     "description": ""
   },
   "ForceHrefToMSEdgeOptionText": {
-    "message": "Links immer mit Microsoft Edge öffnen.",
+    "message": "Erzwingen Sie, dass alle Links in E-Mails, außer denen von OneDrive/SharePoint, in Microsoft Edge geöffnet werden.",
     "description": ""
   }
 }

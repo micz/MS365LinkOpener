@@ -40,7 +40,7 @@
     }
   },
   "forceMsedgeOptionText": {
-    "message": "Forza l'apertura dei link in Microsoft Edge.",
+    "message": "Forza l'apertura dei link di OneDrive/SharePoint di documenti generici in Microsoft Edge.",
     "description": ""
   },
   "AlwaysLinkOptionText": {
@@ -76,7 +76,7 @@
     "description": ""
   },
   "ForceHrefToMSEdgeOptionText": {
-    "message": "Forza l'apertura in Microsoft Edge dei link presenti nella mail.",
+    "message": "Forza l'apertura in Microsoft Edge di tutti i link presenti nella mail, che non siano di OneDrive/SharePoint.",
     "description": ""
   }
 }
