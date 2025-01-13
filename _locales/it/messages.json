@@ -44,7 +44,7 @@
     "description": ""
   },
   "AlwaysLinkOptionText": {
-    "message": "Mostra sempre il pulsante per aprire il link nel browser.",
+    "message": "Mostra sempre il pulsante per aprire i link di OneDrive/SharePoint in un browser.",
     "description": ""
   },
   "prefsInfoTitle": {

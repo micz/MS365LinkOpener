@@ -44,7 +44,7 @@
     "description": ""
   },
   "AlwaysLinkOptionText": {
-    "message": "Schaltfläche zum öffnen von Links im Webbrowser permanent anzeigen.",
+    "message": "Zeigen Sie immer die Schaltfläche an, um OneDrive/SharePoint-Links in einem Browser zu öffnen.",
     "description": ""
   },
   "prefsInfoTitle": {
