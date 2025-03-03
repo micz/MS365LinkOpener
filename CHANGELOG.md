@@ -5,6 +5,10 @@
 
 
 
+<h2>Version 1.2.2 - 03/03/2025</h2>
+    <ul>
+     <li>Correctly handling invalid URLs.</li>
+    </ul>
 <h2>Version 1.2.1 - 13/01/2025</h2>
     <ul>
      <li>The descriptions for the available options have been improved.</li>
