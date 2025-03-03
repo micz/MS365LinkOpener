@@ -78,10 +78,10 @@ function extractLinks(html) {
 		if (text.includes(href)) {
 			text = "";
 		}
-		
+		// console.log(">>>>>>>>>> [extractLinks] { href, text, href_sanitized }: "+JSON.stringify({ href, text, href_sanitized }));
 		if (href && (!href.includes('/_layouts/') || href.includes('file=')) && !href.includes('/SitePages/') && (href.includes('/sites/') || href.includes('/personal/') || href.match(/:[A-Za-z]:/)) && href.match(/^https?:\/\/[a-zA-Z0-9.-]+\.sharepoint\.com/i)) {
 		  links.push({ href, text, href_sanitized });
-		//   console.log(">>>>>>>>>> [extractLinks] { href, text, href_sanitized }: "+JSON.stringify({ href, text, href_sanitized }));
+		//   console.log(">>>>>>>>>> [extractLinks found] { href, text, href_sanitized }: "+JSON.stringify({ href, text, href_sanitized }));
 		}
 	  });
 
@@ -194,7 +194,15 @@ function getAppBtn(link, prefs = false, par = {ppt: true, wrd: true, xls: true, 
 
 function removeQueryParams(url, paramsToRemove) {
 	if(!url) return '';
-	const urlObject = new URL(url);
+
+	let urlObject;
+
+	try {
+		urlObject = new URL(url);
+	} catch (e) {
+		return '';
+	}
+	
 	if (paramsToRemove === "all") {
 	  // Rimuove all params
 	  let mySearchParams = new URLSearchParams(urlObject.searchParams);
