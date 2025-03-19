@@ -8,7 +8,6 @@
 <h2>Version 1.2.3 - 19/03/2025</h2>
     <ul>
      <li>Now showing a PDF icon for linked PDF files [<a href="https://github.com/micz/MS365LinkOpener/issues/14">#14</a>].</li>
-     <li>...</li>
     </ul>
 <h2>Version 1.2.2 - 03/03/2025</h2>
     <ul>
