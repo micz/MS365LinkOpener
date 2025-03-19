@@ -39,6 +39,15 @@
       }
     }
   },
+  "openPdf": {
+    "message": "Open in $APP$",
+    "description": "",
+	"placeholders": {
+      "app" : {
+        "content" : "PDF"
+      }
+    }
+  },
   "forceMsedgeOptionText": {
     "message": "Force the opening of OneDrive/SharePoint links for generic documents in Microsoft Edge.",
     "description": ""
