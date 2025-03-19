@@ -43,9 +43,8 @@ async function add365LinkButton() {
 		//console.log('>>>>>>>>>>>>>> [add365LinkButton] PRE force_msedge');
 		//console.log('>>>>>>>>>>>>>> [add365LinkButton] force_msedge: '+prefs.force_msedge );
 		if(app_protocol!==''){		// App found
-			app_selector = getAppBtn(links[i].href, prefs, {ppt: app_protocol==='p', wrd: app_protocol==='w', xls: app_protocol==='x', lnk: false} );
+			app_selector = getAppBtn(links[i].href, prefs, {ppt: app_protocol==='p', wrd: app_protocol==='w', xls: app_protocol==='x', pdf: app_protocol==='pdf', lnk: false} );
 			banner.appendChild(app_selector);
-			
 		}else{	//App not found
 			app_selector = getAppBtn(links[i].href, prefs);
 			banner.appendChild(app_selector);
@@ -125,23 +124,28 @@ function sortLinksByText(links) {
   }
   
 
-function getFileType(test){	// returns '' if no file type has been found - w if word - x if excel - p if powerpoint
+function getFileType(test){	// returns '' if no file type has been found - w if word - x if excel - p if powerpoint - pdf if pdf
   let regex_xls = /\.(xlsx|xls|ods)/i;
   let is_excel = regex_xls.test(test.href) || regex_xls.test(test.text);
   let regex_doc = /\.(docx|doc|odt)/i;
   let is_word = regex_doc.test(test.href) || regex_doc.test(test.text);
   let regex_ppt = /\.(pptx|ppt|odp)/i;
   let is_powerpoint = regex_ppt.test(test.href) || regex_ppt.test(test.text);
+  let regex_pdf = /\.(pdf)/i;
+  let is_pdf = regex_pdf.test(test.href) || regex_pdf.test(test.text);
   //console.log('is_powerpoint: '+is_powerpoint);
+  console.log('is_pdf: '+is_pdf);
   //if (is_excel===is_word || is_excel===is_powerpoint || is_word===is_powerpoint) return '';
-  let checkApp = (is_word ? 1 : 0) + (is_excel ? 1 : 0) + (is_powerpoint ? 1 : 0);
+  let checkApp = (is_word ? 1 : 0) + (is_excel ? 1 : 0) + (is_powerpoint ? 1 : 0) + (is_pdf ? 1 : 0);
   if((checkApp == 0) || (checkApp > 1)) return '';
   if (is_excel) return 'x';
   if (is_word) return 'w';
   if (is_powerpoint) return 'p';
+  if (is_pdf) return 'pdf';
+  return '';
 }
 
-function getAppBtn(link, prefs = false, par = {ppt: true, wrd: true, xls: true, lnk: true}) {
+function getAppBtn(link, prefs = false, par = {ppt: true, wrd: true, xls: true, pdf: false, lnk: true}) {
   // Create the selector
   var app_selector = document.createElement("div");
   app_selector.className = "miczMS365Opener_wrapper";
@@ -165,6 +169,7 @@ function getAppBtn(link, prefs = false, par = {ppt: true, wrd: true, xls: true, 
 	'ppt': { value: "ms-powerpoint:ofe|u|" + link_sanitized, text: browser.i18n.getMessage("openPowerPoint"), image: browser.runtime.getURL('../images/powerpoint-32px.png') },
 	'xls': { value: "ms-excel:ofe|u|" + link_sanitized, text: browser.i18n.getMessage("openExcel"), image: browser.runtime.getURL('../images/excel-32px.png') },
     'wrd': { value: "ms-word:ofe|u|" + link_sanitized, text: browser.i18n.getMessage("openWord"), image: browser.runtime.getURL('../images/word-32px.png') },
+	'pdf': { value: (prefs.force_msedge?"microsoft-edge:":"") + link, text: browser.i18n.getMessage("openPdf"), image: browser.runtime.getURL('../images/pdf-32px.png') },
 	};
 
   // Add options to the selector
